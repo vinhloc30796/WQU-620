@@ -24,3 +24,15 @@ Each node represents 2 states of the world:
 
 * The state where the price goes up
 * The state where the price goes down
+
+### c) Define market completeness using parts a and b
+
+A complete market is one where contracts can be made to gamble on all states of the world using the existing instruments
+
+### d) 
+
+## References
+
+* [Complete Market - Defintions.net](https://www.definitions.net/definition/complete+market)
+* 
+
