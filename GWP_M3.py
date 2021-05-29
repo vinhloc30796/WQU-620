@@ -43,7 +43,7 @@ def Binomial_Tree(N, S0, group_n):  # you can add variables to the function
 # Variables
 N = 6  # number of layers
 S0 = 1  # Initial Price
-group_n = 1.12  # Group Number 2
+group_n = 2  # Group Number 2
 
 stock_prices = Binomial_Tree(N, S0, group_n)
 
@@ -58,7 +58,7 @@ print(stock_prices[N - 1, :])
 # Variables
 S0 = 100  # Initial Price
 N = 101  # number of layers
-group_n = 1.12  # Group Number 2
+group_n = 2  # Group Number 2
 
 stock_prices = Binomial_Tree(N, S0, group_n)
 df_P_N = pd.DataFrame(stock_prices)
