@@ -8,11 +8,6 @@ Created on Mon May 24 22:42:18 2021
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.sparse import csc_matrix
-from scipy.stats import bernoulli
-from scipy.optimize import fsolve
-from scipy.stats import norm
-
 
 def binomialTree(N, S0, group_n):  # you can add variables to the function
 
@@ -21,13 +16,13 @@ def binomialTree(N, S0, group_n):  # you can add variables to the function
     d = 1 / u
 
     #  Create some empty matrices to hold our stock and call prices.
-    stock_prices = np.zeros((N, N))
+    stock_prices = np.zeros((N+1, N+1))
 
     #  Put our initial price in the matrix
     stock_prices[0, 0] = S0
 
     #  Fill out the remaining values
-    for i in range(1, N):
+    for i in range(1, N+1):
         M = i + 1
         stock_prices[i, 0] = d * stock_prices[i - 1, 0]
         for j in range(1, M):
