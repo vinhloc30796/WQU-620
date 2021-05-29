@@ -22,7 +22,7 @@ def binomialTree(N, S0, group_n):
     u = 1.1 + group_n / 100
     d = 1 / u
 
-    #  Create some empty matrices to hold our stock and call prices.
+    #  Create some empty matrices to hold our stock prices and returns.
     stock_prices = np.zeros((N+1, N+1))
     return_stock_prices = np.zeros((N+1, N+1))
 
@@ -33,15 +33,10 @@ def binomialTree(N, S0, group_n):
     for i in range(1, N+1):
         M = i + 1
         stock_prices[i, 0] = d * stock_prices[i - 1, 0]
-        return_stock_prices[i, 0] = np.log(
-            stock_prices[i, 0]/S0
-        )
+        return_stock_prices[i, 0] = np.log(stock_prices[i, 0]/S0)
         for j in range(1, M):
             stock_prices[i, j] = u * stock_prices[i - 1, j - 1]
-            return_stock_prices[i, j] = np.log(
-                stock_prices[i, j]/S0
-            )
-
+            return_stock_prices[i, j] = np.log(stock_prices[i, j]/S0)
     return {
         "stock_prices": stock_prices,
         "return_stock_prices": return_stock_prices
