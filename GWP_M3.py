@@ -14,7 +14,7 @@ from scipy.optimize import fsolve
 from scipy.stats import norm
 
 
-def Binomial_Tree(N, S0, group_n):  # you can add variables to the function
+def binomialTree(N, S0, group_n):  # you can add variables to the function
 
     #  Assume a volatility and calculate the size of an up move, down move, and probability
     u = 1.1 + group_n / 100
@@ -35,7 +35,8 @@ def Binomial_Tree(N, S0, group_n):  # you can add variables to the function
 
     return stock_prices
 #define binomial coefficient(nCr) for each terminal value of each path
-def binomial_freq(N):
+
+def binomialFreq(N):
     freq_arr = []
     for i in range(N+1):
             freq_arr.append(comb(N, i, exact=True))
