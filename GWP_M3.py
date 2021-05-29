@@ -34,3 +34,9 @@ def Binomial_Tree(N, S0, group_n):  # you can add variables to the function
             stock_prices[i, j] = u * stock_prices[i - 1, j - 1]
 
     return stock_prices
+#define binomial coefficient(nCr) for each terminal value of each path
+def binomial_freq(N):
+    freq_arr = []
+    for i in range(N+1):
+            freq_arr.append(comb(N, i, exact=True))
+    return freq_arr
