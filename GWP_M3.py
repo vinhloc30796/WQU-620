@@ -4,12 +4,14 @@ Created on Mon May 24 22:42:18 2021
 
 @author: juanvarl
 @author: Kanittha-Set
+@author: vinhloc30796
 """
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.special import comb
+from scipy.stats import binom
 
 def binomialTree(N, S0, group_n):
     """
@@ -22,6 +24,7 @@ def binomialTree(N, S0, group_n):
 
     #  Create some empty matrices to hold our stock and call prices.
     stock_prices = np.zeros((N+1, N+1))
+    return_stock_prices = np.zeros((N+1, N+1))
 
     #  Put our initial price in the matrix
     stock_prices[0, 0] = S0
@@ -39,14 +42,26 @@ def binomialTree(N, S0, group_n):
                 stock_prices[i, j]/S0
             )
 
-    return stock_prices
+    return {
+        "stock_prices": stock_prices,
+        "return_stock_prices": return_stock_prices
+    }
 
-def binomialFreq(N):
+def binomialFreq(N, relative=True):
     """
-    Define the frequency as the binomial coefficient (nCr) 
-    for each terminal value of each path
+    Calculate the frequency 
+    for each terminal value of each path,
+    where the frequency is the binomial coefficient (nCr).
     """
-    freq_arr = []
-    for i in range(N+1):
-            freq_arr.append(comb(N, i, exact=True))
+    freq_arr = np.array([])
+    if relative:
+        p = 0.5
+        binom_dist = binom(n=N, p=p)
+        freq_arr = np.array(
+            [binom.pmf(k=i,n=N,p=p) for i in range(N+1)]
+        )
+    else:
+        freq_arr = np.array(
+            [comb(N, i, exact=True) for i in range(N+1)]
+        )
     return freq_arr
