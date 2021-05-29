@@ -29,10 +29,15 @@ Each node represents 2 states of the world:
 
 A complete market is one where contracts can be made to gamble on all states of the world using the existing instruments
 
-### d) 
+### d) Suppose the underlying stock price jumped. By jumps, we mean that it moves by a factor larger than u (or smaller than d) from 1 node to the next. Would that market still be complete? Why or why not?
+
+That market is still complete.
+
+* If the price has increased by a factor larger than u, then it has also increased (at least) u. That state of the world is still represented in the model.
+* If the price has decreased by a factor larger than d, then it has also decreased (at least) d. That state of the world is still represented in the model.
 
 ## References
 
 * [Complete Market - Defintions.net](https://www.definitions.net/definition/complete+market)
-* 
+
 
