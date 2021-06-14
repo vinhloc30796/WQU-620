@@ -14,13 +14,12 @@ from scipy.special import comb
 from scipy.stats import binom
 
 
-def binomial_tree(N, S0, group_n):
+def binomial_tree(N, S0, u):
     """
     Calculate the option price binomial tree
     in the form of a np.array with shape NxN
     """
     #  Assume a volatility and calculate the size of an up move, down move, and probability
-    u = 1.1 + group_n / 100
     d = 1 / u
 
     #  Create some empty matrices to hold our stock and call prices.
@@ -56,3 +55,18 @@ def binomial_freq(N, relative=True):
     else:
         freq_arr = np.array([comb(N, i, exact=True) for i in range(N + 1)])
     return freq_arr
+
+def terminal_coef(N, u):
+    """
+    Calculate the terminal probability coefficient 
+    for each terminal value of each path,
+    where the coefficient is comb(T, y) * p_star**y * (1-p_star)**(T - y)
+    """
+
+    freq_arr = binomial_freq(N, relative=False)
+    p_star = (1 - 1/u)/(u - 1/u)
+    return (
+        p_star**(np.arange(N+1)) \
+        * (1 - p_star)**(np.arange(N+1)[::-1]) \
+        * freq_arr 
+    )
